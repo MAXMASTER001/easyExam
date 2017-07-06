@@ -58,7 +58,8 @@ export default class sorugonder extends Component {
       width: size.width,
       height: size.height,
       avatarSource: '',
-      resizedImageUri: [],
+      yeniCevap: '',
+      //resizedImageUri: [],
       photosTaken: [],
       uploadProgress: 0,
       ders: 'ders seç',
@@ -275,11 +276,24 @@ export default class sorugonder extends Component {
         >
           <Image source={{ uri: resimler[i].imageUri }} style={styles.sorular} />
           <TextInput style={{ margin: 5, width: 150, height: 15, alignSelf: 'center', borderWidth: 2 }}
-            onValueChange={(text) => {
+            onChangeText={(text) => {
+              // alert(text)
+              let cop = this.state.photosTaken.slice(0)
+              cop[i].cevap = text
+
+              this.setState({ photosTaken: cop })
+              this.setState({ yeniCevap: text })
+
+              console.log(this.state.photosTaken[i].cevap)
+              console.log(cop[i].cevap)
+              //this.forceUpdate()
+              //alert(cop[i].cevap)
 
             }}
-            value={resimler[i].cevap}
+
+            value={this.state.photosTaken[i].cevap}
           />
+          <Text>{this.state.photosTaken[i].cevap} </Text>
 
 
         </View>,
