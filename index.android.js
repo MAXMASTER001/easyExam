@@ -137,9 +137,9 @@ export default class sorugonder extends Component {
 
     axios
       .post(
-        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_kks_olustur.php',
-        data,
-      )
+      'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_kks_olustur.php',
+      data,
+    )
       .then(response => {
         console.log(response);
         //alert('sınavınız oluşturuldu');
@@ -191,10 +191,10 @@ export default class sorugonder extends Component {
 
       axios
         .post(
-          'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_ogretmen_yukle.php',
-          data,
-          config,
-        )
+        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_ogretmen_yukle.php',
+        data,
+        config,
+      )
         .then(response => {
           console.log(response);
           resolve('succesfuly uploaded');
@@ -230,22 +230,22 @@ export default class sorugonder extends Component {
     data.append('kksAdi', this.state.kksAdi);
     axios
       .post(
-        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_pdfbas.php',
-        data,
-        config,
-      )
+      'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_pdfbas.php',
+      data,
+      config,
+    )
       .then(response => {
         console.log(response);
         console.log('ALOOO');
         //alert(this.state.kksAdi);
         Linking.openURL(
           'http://www.ortaksinav.net/hazine00/KKSOGRETMEN/KKS_FOLDER/' +
-            this.state.user_folder +
-            '/' +
-            this.state.kksAdi +
-            '/' +
-            this.state.kksAdi +
-            'A.pdf',
+          this.state.user_folder +
+          '/' +
+          this.state.kksAdi +
+          '/' +
+          this.state.kksAdi +
+          'A.pdf',
         );
       })
       .catch(error => console.log(error));
@@ -263,16 +263,25 @@ export default class sorugonder extends Component {
         <View
           style={{
             flex: 1,
-
+            borderWidth: 2,
+            borderColor: 'red',
+            padding: 15,
+            justifyContent: 'center',
+            alignItems: 'center',
             margin: 3,
             width: 150,
             height: 150,
           }}
         >
           <Image source={{ uri: resimler[i] }} style={styles.sorular} />
-          <Text style={{ flex: 1, alignSelf: 'center' }}>
-            cevap: {cevap}
-          </Text>
+          <TextInput style={{ margin: 5, width: 150, height: 15, alignSelf: 'center', borderWidth: 2 }}
+            onValueChange={(text) => {
+
+            }}
+            value={resimler[i].cevap}
+          />
+
+
         </View>,
       );
     }
@@ -300,8 +309,8 @@ export default class sorugonder extends Component {
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: 90,
-                height: 90,
+                width: 45,
+                height: 45,
                 borderWidth: 3,
               }}
             >
@@ -421,10 +430,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   sorular: {
-    width: 150,
-    flex: 5,
-    height: 150,
-    marginRight: 3,
+    width: 130,
+    flex: 1,
+    margin: 5,
   },
 });
 

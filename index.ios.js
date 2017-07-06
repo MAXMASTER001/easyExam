@@ -13,6 +13,7 @@ import Base64 from 'base-64';
 import Swiper from 'react-native-swiper';
 //import EmailPassword from './src/components/EmailPassword';
 import ScrollViewExample from './src/components/ScrollView';
+import Soru from './src/soru'
 
 import {
   AppRegistry,
@@ -58,6 +59,7 @@ export default class sorugonder extends Component {
       height: size.height,
       avatarSource: '',
       resizedImageUri: [],
+      photosTaken: [],
       uploadProgress: 0,
       ders: 'ders seç',
       kksAdi: '',
@@ -110,11 +112,11 @@ export default class sorugonder extends Component {
         // resizeImageUri is the URI of the new image that can now be displayed, uploaded...
         // console.log('bıdı bıdı');
 
-        const resimler = this.state.resizedImageUri;
-        resimler.push(resizedImageUri);
-        this.setState({ resizedImageUri: resimler });
+        const resimler = this.state.photosTaken;
+        resimler.push(new Soru(resizedImageUri, 'X'));
+        this.setState({ photosTaken: resimler });
 
-        console.log('resized ımage URIs: ' + this.state.resizedImageUri);
+
       })
       .catch(err => {
         // Oops, something went wrong. Check that the filename is correct and
@@ -137,9 +139,9 @@ export default class sorugonder extends Component {
 
     axios
       .post(
-        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_kks_olustur.php',
-        data,
-      )
+      'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_kks_olustur.php',
+      data,
+    )
       .then(response => {
         console.log(response);
         //alert('sınavınız oluşturuldu');
@@ -165,10 +167,10 @@ export default class sorugonder extends Component {
       const data = new FormData();
 
       let i = 1;
-      for (resimUri of this.state.resizedImageUri) {
+      for (resim of this.state.photosTaken) {
         data.append('files[]', {
-          uri: resimUri,
-          name: i + '_image-B.jpeg',
+          uri: resim.imageUri,
+          name: i + '_image-' + resim.cevap + '.jpeg',
           type: 'image/jpeg',
         });
         i++;
@@ -191,10 +193,10 @@ export default class sorugonder extends Component {
 
       axios
         .post(
-          'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_ogretmen_yukle.php',
-          data,
-          config,
-        )
+        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_ogretmen_yukle.php',
+        data,
+        config,
+      )
         .then(response => {
           console.log(response);
           resolve('succesfuly uploaded');
@@ -230,49 +232,56 @@ export default class sorugonder extends Component {
     data.append('kksAdi', this.state.kksAdi);
     axios
       .post(
-        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_pdfbas.php',
-        data,
-        config,
-      )
+      'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_pdfbas.php',
+      data,
+      config,
+    )
       .then(response => {
         console.log(response);
         console.log('ALOOO');
         //alert(this.state.kksAdi);
         Linking.openURL(
           'http://www.ortaksinav.net/hazine00/KKSOGRETMEN/KKS_FOLDER/' +
-            this.state.user_folder +
-            '/' +
-            this.state.kksAdi +
-            '/' +
-            this.state.kksAdi +
-            'A.pdf',
+          this.state.user_folder +
+          '/' +
+          this.state.kksAdi +
+          '/' +
+          this.state.kksAdi +
+          'A.pdf',
         );
       })
       .catch(error => console.log(error));
   }
 
   renderImages() {
-    const resimler = this.state.resizedImageUri;
+    const resimler = this.state.photosTaken;
     const imgler = [];
 
     for (let i = 0, len = resimler.length; i < len; i++) {
-      console.log(resimler[i]);
-      const nokta = resimler[i].indexOf('.');
-      const cevap = resimler[i].substr(nokta - 1, 1);
+
       imgler.push(
         <View
           style={{
             flex: 1,
-
+            borderWidth: 2,
+            borderColor: 'red',
+            padding: 15,
+            justifyContent: 'center',
+            alignItems: 'center',
             margin: 3,
             width: 150,
             height: 150,
           }}
         >
-          <Image source={{ uri: resimler[i] }} style={styles.sorular} />
-          <Text style={{ flex: 1, alignSelf: 'center' }}>
-            cevap: {cevap}
-          </Text>
+          <Image source={{ uri: resimler[i].imageUri }} style={styles.sorular} />
+          <TextInput style={{ margin: 5, width: 150, height: 15, alignSelf: 'center', borderWidth: 2 }}
+            onValueChange={(text) => {
+
+            }}
+            value={resimler[i].cevap}
+          />
+
+
         </View>,
       );
     }
@@ -421,10 +430,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   sorular: {
-    width: 150,
-    flex: 5,
-    height: 150,
-    marginRight: 3,
+    width: 130,
+    flex: 1,
+    margin: 5,
   },
 });
 
