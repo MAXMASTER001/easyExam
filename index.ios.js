@@ -13,7 +13,7 @@ import Base64 from 'base-64';
 import Swiper from 'react-native-swiper';
 //import EmailPassword from './src/components/EmailPassword';
 import ScrollViewExample from './src/components/ScrollView';
-import Soru from './src/soru'
+import Soru from './src/soru';
 
 import {
   AppRegistry,
@@ -32,6 +32,7 @@ import {
 
 const liste = {
   dersler: [
+    { name: 'Ders seç', id: 0 },
     { name: 'MATEMATİK', id: 1 },
     { name: 'GEOMETRİ', id: 2 },
     { name: 'FİZİK', id: 3 },
@@ -58,7 +59,7 @@ export default class sorugonder extends Component {
       width: size.width,
       height: size.height,
       avatarSource: '',
-      yeniCevap: '',
+      //yeniCevap: '',
       //resizedImageUri: [],
       photosTaken: [],
       uploadProgress: 0,
@@ -116,8 +117,6 @@ export default class sorugonder extends Component {
         const resimler = this.state.photosTaken;
         resimler.push(new Soru(resizedImageUri, 'X'));
         this.setState({ photosTaken: resimler });
-
-
       })
       .catch(err => {
         // Oops, something went wrong. Check that the filename is correct and
@@ -140,9 +139,9 @@ export default class sorugonder extends Component {
 
     axios
       .post(
-      'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_kks_olustur.php',
-      data,
-    )
+        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_kks_olustur.php',
+        data,
+      )
       .then(response => {
         console.log(response);
         //alert('sınavınız oluşturuldu');
@@ -194,10 +193,10 @@ export default class sorugonder extends Component {
 
       axios
         .post(
-        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_ogretmen_yukle.php',
-        data,
-        config,
-      )
+          'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_ogretmen_yukle.php',
+          data,
+          config,
+        )
         .then(response => {
           console.log(response);
           resolve('succesfuly uploaded');
@@ -233,22 +232,22 @@ export default class sorugonder extends Component {
     data.append('kksAdi', this.state.kksAdi);
     axios
       .post(
-      'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_pdfbas.php',
-      data,
-      config,
-    )
+        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_pdfbas.php',
+        data,
+        config,
+      )
       .then(response => {
         console.log(response);
         console.log('ALOOO');
         //alert(this.state.kksAdi);
         Linking.openURL(
           'http://www.ortaksinav.net/hazine00/KKSOGRETMEN/KKS_FOLDER/' +
-          this.state.user_folder +
-          '/' +
-          this.state.kksAdi +
-          '/' +
-          this.state.kksAdi +
-          'A.pdf',
+            this.state.user_folder +
+            '/' +
+            this.state.kksAdi +
+            '/' +
+            this.state.kksAdi +
+            'A.pdf',
         );
       })
       .catch(error => console.log(error));
@@ -259,13 +258,12 @@ export default class sorugonder extends Component {
     const imgler = [];
 
     for (let i = 0, len = resimler.length; i < len; i++) {
-
       imgler.push(
         <View
           style={{
             flex: 1,
             borderWidth: 2,
-            borderColor: 'red',
+            borderColor: 'black',
             padding: 15,
             justifyContent: 'center',
             alignItems: 'center',
@@ -274,28 +272,44 @@ export default class sorugonder extends Component {
             height: 150,
           }}
         >
-          <Image source={{ uri: resimler[i].imageUri }} style={styles.sorular} />
-          <TextInput style={{ margin: 5, width: 150, height: 15, alignSelf: 'center', borderWidth: 2 }}
-            onChangeText={(text) => {
-              // alert(text)
-              let cop = this.state.photosTaken.slice(0)
-              cop[i].cevap = text
-
-              this.setState({ photosTaken: cop })
-              this.setState({ yeniCevap: text })
-
-              console.log(this.state.photosTaken[i].cevap)
-              console.log(cop[i].cevap)
-              //this.forceUpdate()
-              //alert(cop[i].cevap)
-
-            }}
-
-            value={this.state.photosTaken[i].cevap}
+          <Image
+            source={{ uri: resimler[i].imageUri }}
+            style={styles.sorular}
           />
+          <View
+            style={{ flexDirection: 'row', width: 60, alignItems: 'center' }}
+          >
+            <Text>Cevap</Text>
+            <TextInput
+              style={{
+                margin: 5,
+                width: 20,
+                textAlign: 'center',
+                height: 20,
+                fontWeight: '500',
+                color: 'white',
+                backgroundColor: 'black',
+                fontSize: 20,
+                borderWidth: 1,
+              }}
+              clearTextOnFocus={true} //sadece iosda çalışır.
+              onChangeText={text => {
+                // alert(text)
+                let cop = this.state.photosTaken.slice(0);
+                cop[i].cevap = text;
+
+                this.setState({ photosTaken: cop });
+                //this.setState({ yeniCevap: text });
+
+                //console.log(this.state.photosTaken[i].cevap);
+                //console.log(cop[i].cevap);
+                //this.forceUpdate()
+                //alert(cop[i].cevap)
+              }}
+              value={this.state.photosTaken[i].cevap}
+            />
+          </View>
           {/*<Text>{this.state.photosTaken[i].cevap} </Text>*/}
-
-
         </View>,
       );
     }
@@ -305,7 +319,7 @@ export default class sorugonder extends Component {
   render() {
     return (
       <Swiper
-        ref={mySwiper => this.swiper = mySwiper}
+        ref={mySwiper => (this.swiper = mySwiper)}
         style={swiperStyles.wrapper}
         showsButtons={false}
       >
@@ -317,7 +331,6 @@ export default class sorugonder extends Component {
               //borderWidth: 5,
             }}
           >
-
             <TouchableOpacity
               onPress={() => this.soruSec()}
               style={{
@@ -351,7 +364,6 @@ export default class sorugonder extends Component {
               {this.renderImages()}
             </ScrollView>
           </View>
-
         </View>
 
         <View style={swiperStyles.slide2}>
@@ -375,12 +387,9 @@ export default class sorugonder extends Component {
                 <Picker.Item label={item.name} value={item.name} key={index} />
               );
             })}
-
           </Picker>
-
         </View>
         <View style={swiperStyles.slide3}>
-
           <View style={{ height: 140 }}>
             <Text style={swiperStyles.text}>Sınav adı belirle</Text>
           </View>
@@ -389,8 +398,8 @@ export default class sorugonder extends Component {
               style={{
                 margin: 5,
                 textAlign: 'center',
-                autoCapitalize: 'none',
-                autoCorrect: false,
+                //autoCapitalize: 'none',
+                //autoCorrect: false,
                 height: 45,
                 //color: '#fff',
                 fontSize: 30,
@@ -420,7 +429,6 @@ export default class sorugonder extends Component {
             >
               Sınav oluştur
             </Button>
-
           </View>
           {/* Soruları gönder butonuna sanırım gerek yok.*/}
           {/*<View style={{ height: 45, width: 300 }}>
@@ -430,7 +438,6 @@ export default class sorugonder extends Component {
           </View>
 */}
         </View>
-
       </Swiper>
     );
   }
