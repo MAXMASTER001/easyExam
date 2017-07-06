@@ -293,7 +293,7 @@ export default class sorugonder extends Component {
 
             value={this.state.photosTaken[i].cevap}
           />
-          <Text>{this.state.photosTaken[i].cevap} </Text>
+          {/*<Text>{this.state.photosTaken[i].cevap} </Text>*/}
 
 
         </View>,
@@ -444,8 +444,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   sorular: {
-    width: 130,
-    flex: 1,
+    width: 110,
+    height: 110,
     margin: 5,
   },
 });
