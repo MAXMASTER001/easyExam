@@ -16,6 +16,8 @@ import Swiper from 'react-native-swiper';
 import ScrollViewExample from './src/components/ScrollView';
 import Soru from './src/soru';
 
+import { NativeModules } from 'react-native';
+
 import {
   AppRegistry,
   StyleSheet,
@@ -98,13 +100,22 @@ export default class sorugonder extends Component {
         this.setState({
           avatarSource: source,
         });
-        this.kucult(response);
+
+        console.log('soru seçimi response objesi:' + response);
+        // const originalImage = require('./camera.png');
+        const { ReactNativeImageCropping } = NativeModules;
+
+        ReactNativeImageCropping.cropImageWithUrl(response.uri).then(
+          image => {
+            //Image is saved in NSTemporaryDirectory!
+            //image = {uri, width, height}
+            // this.soruEkle(image.uri);
+
+            this.kucult(response);
+          },
+          err => console.log(b),
+        );
       }
-    });
-  }
-  soruSecCrop() {
-    ImagePicker.openPicker({ cropping: true }).then(image => {
-      console.log(image);
     });
   }
 
@@ -120,9 +131,7 @@ export default class sorugonder extends Component {
         // resizeImageUri is the URI of the new image that can now be displayed, uploaded...
         // console.log('bıdı bıdı');
 
-        const resimler = this.state.photosTaken;
-        resimler.push(new Soru(resizedImageUri, 'X'));
-        this.setState({ photosTaken: resimler });
+        this.soruEkle(resizedImageUri);
       })
       .catch(err => {
         // Oops, something went wrong. Check that the filename is correct and
@@ -130,6 +139,12 @@ export default class sorugonder extends Component {
 
         console.log('hata oldu' + err);
       });
+  }
+
+  soruEkle(imageUri) {
+    const resimler = this.state.photosTaken;
+    resimler.push(new Soru(imageUri, 'X'));
+    this.setState({ photosTaken: resimler });
   }
 
   kksOlustur() {
