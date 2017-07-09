@@ -11,7 +11,9 @@
     "base-64": "^0.1.0",
     "react": "16.0.0-alpha.12",
     "react-native": "0.45.1",
+    "react-native-customized-image-picker": "0.0.28",
     "react-native-device-info": "^0.10.2",
+    "react-native-image-crop-picker": "^0.14.1",
     "react-native-image-picker": "^0.26.3",
     "react-native-image-resizer": "^0.1.1",
     "react-native-swiper": "^1.5.4"

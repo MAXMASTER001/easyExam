@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import ImagePicker from 'react-native-image-picker';
 import ImageResizer from 'react-native-image-resizer';
-
+//import ImagePicker from 'react-native-image-crop-picker';
+//import ImagePicker from 'react-native-customized-image-picker';
 import Card from './src/components/Card';
 import CardSection from './src/components/CardSection';
 import Button from './src/components/Button';
@@ -99,6 +100,11 @@ export default class sorugonder extends Component {
         });
         this.kucult(response);
       }
+    });
+  }
+  soruSecCrop() {
+    ImagePicker.openPicker({ cropping: true }).then(image => {
+      console.log(image);
     });
   }
 
@@ -336,8 +342,8 @@ export default class sorugonder extends Component {
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: 45,
-                height: 45,
+                width: 100,
+                height: 100,
                 borderWidth: 3,
               }}
             >
@@ -464,6 +470,7 @@ const swiperStyles = StyleSheet.create({
 
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
     //backgroundColor: '#9DD6EB',
     // backgroundColor: '#97CAE5',
   },
@@ -471,30 +478,35 @@ const swiperStyles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'white',
     //backgroundColor: '#97CAE5',
   },
   slide3: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
     // backgroundColor: '#92BBD9',
   },
   slide4: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
     // backgroundColor: '#92BBD9',
   },
   slide5: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
     //backgroundColor: '#92BBD9',
   },
   slide6: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
     //backgroundColor: '#92BBD9',
   },
   text: {
