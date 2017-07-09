@@ -1,1 +1,0 @@
-../../../../../node_modules/gl-react-native/ios/GLData.h
