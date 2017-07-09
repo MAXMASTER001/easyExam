@@ -1,0 +1,1 @@
+../../../../../node_modules/gl-react-native/ios/GLShader.h

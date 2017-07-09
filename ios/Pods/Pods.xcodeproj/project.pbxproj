@@ -1,0 +1,583 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02E018727F6AC13231522C900795BD30 /* GLImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 90983F4C6EEA9625B3A28906BB4CB101 /* GLImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		039A36515E0C15176D8F1E6CCBA97631 /* RNGL-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C89192AC66956F73F257C94419F70B1D /* RNGL-dummy.m */; };
+		05DB348B7B7B2D58B1697D451FB28C65 /* RCTConvert+GLData.h in Headers */ = {isa = PBXBuildFile; fileRef = 20BF78DA1C1E11E6BA10D3011A2E3863 /* RCTConvert+GLData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		076A1982347F8F6366437189E1EB48F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		252793CD41A17E69D9306C48297277F5 /* RNGLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = C99A01D06CB01DDDE4CA8F49CF5D7691 /* RNGLContext.m */; };
+		399B150468166CA5F826AAE196999635 /* GLTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 8969DA2E1159252F571D5540941C7844 /* GLTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B480FB0934635DEA208E722F76E1BAA /* GLFBO.h in Headers */ = {isa = PBXBuildFile; fileRef = 86431CF16C2248BC668BE5773309EC5D /* GLFBO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4831F75EC09B482CC8FAE8044A05C99F /* GLRenderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD136A89E3673234E957819CEE95BF2 /* GLRenderData.m */; };
+		4AE2208078AA04369A8FE0C0A566076A /* GLFBO.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CFE9F6C428543E88D8F0D5ED973AE8 /* GLFBO.m */; };
+		52A969CE2673FFE8ECB45F334AB805A4 /* RCTConvert+CaptureConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B599FAE3EBAC7EE0D0125CC9166E75F /* RCTConvert+CaptureConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6EA3C7DA7630C2DDFB8244B6F400A007 /* RCTConvert+GLData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217BFF85E84C44933AFACF90C63EA3A9 /* RCTConvert+GLData.m */; };
+		7217FC8CD94930B1989D7D7A1C666077 /* GLData.m in Sources */ = {isa = PBXBuildFile; fileRef = 06269DC937B1808D5752F800087C3E0A /* GLData.m */; };
+		7698B2638EB44DFE14F3EB62491D7713 /* GLCanvasManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A224BA3F5A6B3C12F48B8E1A48EA3F /* GLCanvasManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D3C23350A47AAB60401373A42C4458B /* RCTConvert+CaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C04DE00B889F8377364D9AE7A99508 /* RCTConvert+CaptureConfig.m */; };
+		7FAD7AEA2DD47A8FA92F4A3B0BAD1D65 /* GLRenderData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D8D20256F24ADD13C28FB52BB6A468A /* GLRenderData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		960C15FAFBD3F957F9F196954194666A /* GLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AC626F39C9982224B4D21B097A2E6 /* GLImage.m */; };
+		99D8D95F5404D8B28551AFCC38D78AF3 /* GLCanvas.h in Headers */ = {isa = PBXBuildFile; fileRef = 815BC211B7CD8A75914CECDEF67045D8 /* GLCanvas.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9A48299ADFA119EEC1041DC4818973B1 /* GLShader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8FCEF2AAB94459F306BB5E5526C47B /* GLShader.m */; };
+		9E32CE3004F2C7F7BEE9BBC0AE173C5F /* GLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8F69B810C9F3CBA41FD81F7A04E8FC /* GLTexture.m */; };
+		A0883EF6A2669123225F44C5B6A71522 /* Pods-sorugonder-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C059069A93FA3581CE4C07FEFC6ED173 /* Pods-sorugonder-dummy.m */; };
+		A88804E96640D59D102522B7A99A65C6 /* GLShader.h in Headers */ = {isa = PBXBuildFile; fileRef = B503F97F4D85EDE1859809C4102C0996 /* GLShader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B31CF85798482D2B4990425D81EA5A1C /* GLImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD72969C8D3E3F6F85EA12C139520C5D /* GLImageData.m */; };
+		B5DEA39BB0DD8552739F39B0A0F7DCCD /* GLCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 4482936F84E0E6D83807BE948E2290AB /* GLCanvas.m */; };
+		C1D72840F2F43A7BFA80D07040C367B1 /* CaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = FE473A8F76FB9AE8CF47F761EC1371B3 /* CaptureConfig.m */; };
+		CB9C8068FB2FEA570B94D22C9BFFB745 /* GLCanvasManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE07050EF7C8183B8242A36B23A8771B /* GLCanvasManager.m */; };
+		D003882676D6B48617818886CA9957C1 /* GLImageData.h in Headers */ = {isa = PBXBuildFile; fileRef = D402D61CD10F61A17B9083D6EBB149F3 /* GLImageData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAEF934DEAC615C13E9B765BA3E29292 /* GLData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C46C7DDB592AE1D28569846249BF84D /* GLData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC3B0797BEE341EC6BDEE5D9C7CA995E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		ECAB12C3C7D45A3DC2E25FF9B369A44D /* RNGLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 029EF3A68AF0A0B2A1DB27F4FC142CE9 /* RNGLContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FCA15DCEFB517587EA641C5C8EAF2BA0 /* CaptureConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = E965071BEDC4D32CC0F15BCD2B2A29F1 /* CaptureConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		657F353A5882C6B8C249E4C82714064C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EF48ED3C019FEB1456C4934EE175422;
+			remoteInfo = RNGL;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		029EF3A68AF0A0B2A1DB27F4FC142CE9 /* RNGLContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNGLContext.h; sourceTree = "<group>"; };
+		06269DC937B1808D5752F800087C3E0A /* GLData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLData.m; sourceTree = "<group>"; };
+		10415FA328F0B3A9BF27A02F4FB83648 /* RNGL-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNGL-prefix.pch"; sourceTree = "<group>"; };
+		13CFE9F6C428543E88D8F0D5ED973AE8 /* GLFBO.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLFBO.m; sourceTree = "<group>"; };
+		16A224BA3F5A6B3C12F48B8E1A48EA3F /* GLCanvasManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLCanvasManager.h; sourceTree = "<group>"; };
+		20BF78DA1C1E11E6BA10D3011A2E3863 /* RCTConvert+GLData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+GLData.h"; sourceTree = "<group>"; };
+		217BFF85E84C44933AFACF90C63EA3A9 /* RCTConvert+GLData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+GLData.m"; sourceTree = "<group>"; };
+		2E0C9B32416CD45046C3AAF2C0C205EE /* Pods-sorugonder-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-sorugonder-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3BD136A89E3673234E957819CEE95BF2 /* GLRenderData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLRenderData.m; sourceTree = "<group>"; };
+		4482936F84E0E6D83807BE948E2290AB /* GLCanvas.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLCanvas.m; sourceTree = "<group>"; };
+		590E5AD7D65500D59EEE016CCFC32D7A /* libRNGL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRNGL.a; path = libRNGL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C46C7DDB592AE1D28569846249BF84D /* GLData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLData.h; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7B599FAE3EBAC7EE0D0125CC9166E75F /* RCTConvert+CaptureConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+CaptureConfig.h"; sourceTree = "<group>"; };
+		7B9AC626F39C9982224B4D21B097A2E6 /* GLImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLImage.m; sourceTree = "<group>"; };
+		7D8D20256F24ADD13C28FB52BB6A468A /* GLRenderData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLRenderData.h; sourceTree = "<group>"; };
+		815BC211B7CD8A75914CECDEF67045D8 /* GLCanvas.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLCanvas.h; sourceTree = "<group>"; };
+		8539DD0335B79885B5C6935D345252D2 /* Pods-sorugonder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-sorugonder.debug.xcconfig"; sourceTree = "<group>"; };
+		86431CF16C2248BC668BE5773309EC5D /* GLFBO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLFBO.h; sourceTree = "<group>"; };
+		8969DA2E1159252F571D5540941C7844 /* GLTexture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLTexture.h; sourceTree = "<group>"; };
+		90662979FCE8BCF1B33C9EAA97D0505A /* libPods-sorugonder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-sorugonder.a"; path = "libPods-sorugonder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		90983F4C6EEA9625B3A28906BB4CB101 /* GLImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLImage.h; sourceTree = "<group>"; };
+		919378FE211A1876AD6F2F3445E82E2E /* Pods-sorugonder-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-sorugonder-frameworks.sh"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95C04DE00B889F8377364D9AE7A99508 /* RCTConvert+CaptureConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+CaptureConfig.m"; sourceTree = "<group>"; };
+		A8A7F43E629DFFCCAF4A173CFF006DE8 /* Pods-sorugonder-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-sorugonder-acknowledgements.plist"; sourceTree = "<group>"; };
+		AE07050EF7C8183B8242A36B23A8771B /* GLCanvasManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLCanvasManager.m; sourceTree = "<group>"; };
+		B503F97F4D85EDE1859809C4102C0996 /* GLShader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLShader.h; sourceTree = "<group>"; };
+		C059069A93FA3581CE4C07FEFC6ED173 /* Pods-sorugonder-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-sorugonder-dummy.m"; sourceTree = "<group>"; };
+		C75910E2C761D6871B5AF142EE83BA23 /* RNGL.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RNGL.xcconfig; sourceTree = "<group>"; };
+		C8506ADA4865E70FC0D78228F7282A59 /* Pods-sorugonder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-sorugonder.release.xcconfig"; sourceTree = "<group>"; };
+		C89192AC66956F73F257C94419F70B1D /* RNGL-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RNGL-dummy.m"; sourceTree = "<group>"; };
+		C99A01D06CB01DDDE4CA8F49CF5D7691 /* RNGLContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNGLContext.m; sourceTree = "<group>"; };
+		CE8F69B810C9F3CBA41FD81F7A04E8FC /* GLTexture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLTexture.m; sourceTree = "<group>"; };
+		D402D61CD10F61A17B9083D6EBB149F3 /* GLImageData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GLImageData.h; sourceTree = "<group>"; };
+		DD72969C8D3E3F6F85EA12C139520C5D /* GLImageData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLImageData.m; sourceTree = "<group>"; };
+		E965071BEDC4D32CC0F15BCD2B2A29F1 /* CaptureConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CaptureConfig.h; sourceTree = "<group>"; };
+		ED8FCEF2AAB94459F306BB5E5526C47B /* GLShader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GLShader.m; sourceTree = "<group>"; };
+		F78BF74ADA1B82160BD641973690B19E /* Pods-sorugonder-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-sorugonder-resources.sh"; sourceTree = "<group>"; };
+		FE473A8F76FB9AE8CF47F761EC1371B3 /* CaptureConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CaptureConfig.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34B76879C0501A82DF034698084633F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC3B0797BEE341EC6BDEE5D9C7CA995E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA2C24920F878DF74B54889D2347FF11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				076A1982347F8F6366437189E1EB48F2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4E8B61EC591259B1655E6EAB357C3AE9 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E59BB14CE6058926A82447990FBD7527 /* RNGL */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		57573E4F23240061A29D38783DE30901 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				E965071BEDC4D32CC0F15BCD2B2A29F1 /* CaptureConfig.h */,
+				FE473A8F76FB9AE8CF47F761EC1371B3 /* CaptureConfig.m */,
+				815BC211B7CD8A75914CECDEF67045D8 /* GLCanvas.h */,
+				4482936F84E0E6D83807BE948E2290AB /* GLCanvas.m */,
+				16A224BA3F5A6B3C12F48B8E1A48EA3F /* GLCanvasManager.h */,
+				AE07050EF7C8183B8242A36B23A8771B /* GLCanvasManager.m */,
+				5C46C7DDB592AE1D28569846249BF84D /* GLData.h */,
+				06269DC937B1808D5752F800087C3E0A /* GLData.m */,
+				86431CF16C2248BC668BE5773309EC5D /* GLFBO.h */,
+				13CFE9F6C428543E88D8F0D5ED973AE8 /* GLFBO.m */,
+				90983F4C6EEA9625B3A28906BB4CB101 /* GLImage.h */,
+				7B9AC626F39C9982224B4D21B097A2E6 /* GLImage.m */,
+				D402D61CD10F61A17B9083D6EBB149F3 /* GLImageData.h */,
+				DD72969C8D3E3F6F85EA12C139520C5D /* GLImageData.m */,
+				7D8D20256F24ADD13C28FB52BB6A468A /* GLRenderData.h */,
+				3BD136A89E3673234E957819CEE95BF2 /* GLRenderData.m */,
+				B503F97F4D85EDE1859809C4102C0996 /* GLShader.h */,
+				ED8FCEF2AAB94459F306BB5E5526C47B /* GLShader.m */,
+				8969DA2E1159252F571D5540941C7844 /* GLTexture.h */,
+				CE8F69B810C9F3CBA41FD81F7A04E8FC /* GLTexture.m */,
+				7B599FAE3EBAC7EE0D0125CC9166E75F /* RCTConvert+CaptureConfig.h */,
+				95C04DE00B889F8377364D9AE7A99508 /* RCTConvert+CaptureConfig.m */,
+				20BF78DA1C1E11E6BA10D3011A2E3863 /* RCTConvert+GLData.h */,
+				217BFF85E84C44933AFACF90C63EA3A9 /* RCTConvert+GLData.m */,
+				029EF3A68AF0A0B2A1DB27F4FC142CE9 /* RNGLContext.h */,
+				C99A01D06CB01DDDE4CA8F49CF5D7691 /* RNGLContext.m */,
+			);
+			name = ios;
+			path = ios;
+			sourceTree = "<group>";
+		};
+		674E633F713CCC03802879D492027DB6 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EFBCD5509DFBA3F8D0965A3DEC9A9456 /* Pods-sorugonder */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		72EFEC2F5695E17E0FC91897D21E37FA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C75910E2C761D6871B5AF142EE83BA23 /* RNGL.xcconfig */,
+				C89192AC66956F73F257C94419F70B1D /* RNGL-dummy.m */,
+				10415FA328F0B3A9BF27A02F4FB83648 /* RNGL-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../../ios/Pods/Target Support Files/RNGL";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				4E8B61EC591259B1655E6EAB357C3AE9 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				9351BF4412EE1B53367CE2435292B133 /* Products */,
+				674E633F713CCC03802879D492027DB6 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9351BF4412EE1B53367CE2435292B133 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90662979FCE8BCF1B33C9EAA97D0505A /* libPods-sorugonder.a */,
+				590E5AD7D65500D59EEE016CCFC32D7A /* libRNGL.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E59BB14CE6058926A82447990FBD7527 /* RNGL */ = {
+			isa = PBXGroup;
+			children = (
+				57573E4F23240061A29D38783DE30901 /* ios */,
+				72EFEC2F5695E17E0FC91897D21E37FA /* Support Files */,
+			);
+			name = RNGL;
+			path = "../../node_modules/gl-react-native";
+			sourceTree = "<group>";
+		};
+		EFBCD5509DFBA3F8D0965A3DEC9A9456 /* Pods-sorugonder */ = {
+			isa = PBXGroup;
+			children = (
+				2E0C9B32416CD45046C3AAF2C0C205EE /* Pods-sorugonder-acknowledgements.markdown */,
+				A8A7F43E629DFFCCAF4A173CFF006DE8 /* Pods-sorugonder-acknowledgements.plist */,
+				C059069A93FA3581CE4C07FEFC6ED173 /* Pods-sorugonder-dummy.m */,
+				919378FE211A1876AD6F2F3445E82E2E /* Pods-sorugonder-frameworks.sh */,
+				F78BF74ADA1B82160BD641973690B19E /* Pods-sorugonder-resources.sh */,
+				8539DD0335B79885B5C6935D345252D2 /* Pods-sorugonder.debug.xcconfig */,
+				C8506ADA4865E70FC0D78228F7282A59 /* Pods-sorugonder.release.xcconfig */,
+			);
+			name = "Pods-sorugonder";
+			path = "Target Support Files/Pods-sorugonder";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9DF058ADE963AE1E6CBC4DB24498FD22 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCA15DCEFB517587EA641C5C8EAF2BA0 /* CaptureConfig.h in Headers */,
+				99D8D95F5404D8B28551AFCC38D78AF3 /* GLCanvas.h in Headers */,
+				7698B2638EB44DFE14F3EB62491D7713 /* GLCanvasManager.h in Headers */,
+				EAEF934DEAC615C13E9B765BA3E29292 /* GLData.h in Headers */,
+				3B480FB0934635DEA208E722F76E1BAA /* GLFBO.h in Headers */,
+				02E018727F6AC13231522C900795BD30 /* GLImage.h in Headers */,
+				D003882676D6B48617818886CA9957C1 /* GLImageData.h in Headers */,
+				7FAD7AEA2DD47A8FA92F4A3B0BAD1D65 /* GLRenderData.h in Headers */,
+				A88804E96640D59D102522B7A99A65C6 /* GLShader.h in Headers */,
+				399B150468166CA5F826AAE196999635 /* GLTexture.h in Headers */,
+				52A969CE2673FFE8ECB45F334AB805A4 /* RCTConvert+CaptureConfig.h in Headers */,
+				05DB348B7B7B2D58B1697D451FB28C65 /* RCTConvert+GLData.h in Headers */,
+				ECAB12C3C7D45A3DC2E25FF9B369A44D /* RNGLContext.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		65517EA4AA54B8DF3B38483343669B2B /* Pods-sorugonder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D5341EE5378BAB5DA0725E2A3384232 /* Build configuration list for PBXNativeTarget "Pods-sorugonder" */;
+			buildPhases = (
+				F7F79E92B580C1CDE37005B941760682 /* Sources */,
+				CA2C24920F878DF74B54889D2347FF11 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D1794B4B5F673F1720999A029E70029 /* PBXTargetDependency */,
+			);
+			name = "Pods-sorugonder";
+			productName = "Pods-sorugonder";
+			productReference = 90662979FCE8BCF1B33C9EAA97D0505A /* libPods-sorugonder.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		8EF48ED3C019FEB1456C4934EE175422 /* RNGL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1D27C600B6FCBDBBEE910336727D237 /* Build configuration list for PBXNativeTarget "RNGL" */;
+			buildPhases = (
+				52681CC98F2601984458E2ACF39B7947 /* Sources */,
+				34B76879C0501A82DF034698084633F4 /* Frameworks */,
+				9DF058ADE963AE1E6CBC4DB24498FD22 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RNGL;
+			productName = RNGL;
+			productReference = 590E5AD7D65500D59EEE016CCFC32D7A /* libRNGL.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 9351BF4412EE1B53367CE2435292B133 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65517EA4AA54B8DF3B38483343669B2B /* Pods-sorugonder */,
+				8EF48ED3C019FEB1456C4934EE175422 /* RNGL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52681CC98F2601984458E2ACF39B7947 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1D72840F2F43A7BFA80D07040C367B1 /* CaptureConfig.m in Sources */,
+				B5DEA39BB0DD8552739F39B0A0F7DCCD /* GLCanvas.m in Sources */,
+				CB9C8068FB2FEA570B94D22C9BFFB745 /* GLCanvasManager.m in Sources */,
+				7217FC8CD94930B1989D7D7A1C666077 /* GLData.m in Sources */,
+				4AE2208078AA04369A8FE0C0A566076A /* GLFBO.m in Sources */,
+				960C15FAFBD3F957F9F196954194666A /* GLImage.m in Sources */,
+				B31CF85798482D2B4990425D81EA5A1C /* GLImageData.m in Sources */,
+				4831F75EC09B482CC8FAE8044A05C99F /* GLRenderData.m in Sources */,
+				9A48299ADFA119EEC1041DC4818973B1 /* GLShader.m in Sources */,
+				9E32CE3004F2C7F7BEE9BBC0AE173C5F /* GLTexture.m in Sources */,
+				7D3C23350A47AAB60401373A42C4458B /* RCTConvert+CaptureConfig.m in Sources */,
+				6EA3C7DA7630C2DDFB8244B6F400A007 /* RCTConvert+GLData.m in Sources */,
+				039A36515E0C15176D8F1E6CCBA97631 /* RNGL-dummy.m in Sources */,
+				252793CD41A17E69D9306C48297277F5 /* RNGLContext.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7F79E92B580C1CDE37005B941760682 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0883EF6A2669123225F44C5B6A71522 /* Pods-sorugonder-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D1794B4B5F673F1720999A029E70029 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RNGL;
+			target = 8EF48ED3C019FEB1456C4934EE175422 /* RNGL */;
+			targetProxy = 657F353A5882C6B8C249E4C82714064C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		34FE9531DA9AF2820790339988D5FF41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		415827EB74106FD5353CD1F93A5B7586 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C75910E2C761D6871B5AF142EE83BA23 /* RNGL.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/RNGL/RNGL-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		65CB9077CE113D4F95C4232A3049787C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C75910E2C761D6871B5AF142EE83BA23 /* RNGL.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/RNGL/RNGL-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7961230CB77E2CEC080E72BA2AE12848 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8506ADA4865E70FC0D78228F7282A59 /* Pods-sorugonder.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A510CA7F67E41F4FE3EF8D87A767B80E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8539DD0335B79885B5C6935D345252D2 /* Pods-sorugonder.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C104F7F091290C3D1E248192F07FE689 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C104F7F091290C3D1E248192F07FE689 /* Debug */,
+				34FE9531DA9AF2820790339988D5FF41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D5341EE5378BAB5DA0725E2A3384232 /* Build configuration list for PBXNativeTarget "Pods-sorugonder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A510CA7F67E41F4FE3EF8D87A767B80E /* Debug */,
+				7961230CB77E2CEC080E72BA2AE12848 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1D27C600B6FCBDBBEE910336727D237 /* Build configuration list for PBXNativeTarget "RNGL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65CB9077CE113D4F95C4232A3049787C /* Debug */,
+				415827EB74106FD5353CD1F93A5B7586 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

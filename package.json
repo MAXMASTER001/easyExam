@@ -9,9 +9,12 @@
   "dependencies": {
     "axios": "^0.16.2",
     "base-64": "^0.1.0",
+    "gl-react": "^2.2.10",
+    "gl-react-native": "^2.42.3",
     "react": "16.0.0-alpha.12",
     "react-native": "0.45.1",
     "react-native-device-info": "^0.10.2",
+    "react-native-image-cropper": "^0.3.0",
     "react-native-image-picker": "^0.26.3",
     "react-native-image-resizer": "^0.1.1",
     "react-native-swiper": "^1.5.4"

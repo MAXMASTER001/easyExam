@@ -18,6 +18,8 @@ import Soru from './src/soru';
 
 import { NativeModules } from 'react-native';
 
+//import { ImageCrop } from 'react-native-image-cropper';
+
 import {
   AppRegistry,
   StyleSheet,
@@ -61,7 +63,7 @@ export default class sorugonder extends Component {
     this.state = {
       width: size.width,
       height: size.height,
-      avatarSource: '',
+
       //yeniCevap: '',
       //resizedImageUri: [],
       photosTaken: [],
@@ -69,9 +71,13 @@ export default class sorugonder extends Component {
       ders: 'ders seç',
       kksAdi: '',
       user_folder: deviceId,
+      image: null,
     };
   }
 
+  /*capture() {
+    this.cropper.crop().then(base64 => console.log(base64));
+  }*/
   soruSec() {
     var options = {
       title: 'Select Avatar',
@@ -96,27 +102,12 @@ export default class sorugonder extends Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        let source = { uri: response.uri };
-        this.setState({
-          avatarSource: source,
-        });
-
         console.log('soru seçimi response objesi:' + response);
         // const originalImage = require('./camera.png');
         const { ReactNativeImageCropping } = NativeModules;
 
         /* Available aspect ratios:
-
-      - AspectRatioOriginal
-      - AspectRatioSquare
-      - AspectRatio3x2
-      - AspectRatio5x4
-      - AspectRatio4x3
-      - AspectRatio5x4
-      - AspectRatio7x5
-      - AspectRatio16x9
-*/
-        /*const aspectRatio = ReactNativeImageCropping.original;
+git        /*const aspectRatio = ReactNativeImageCropping.original;
         ReactNativeImageCropping.cropImageWithUrlAndAspect(
           imageUrl,
           aspectRatio,
@@ -481,6 +472,23 @@ export default class sorugonder extends Component {
             </Button>
           </View>
 */}
+        </View>
+
+        <View style={swiperStyles.slide4}>
+          {/*<View>
+            <ImageCrop
+              ref={myCropper => (this.cropper = myCropper)}
+              image={this.state.image}
+              cropHeight={this.state.height}
+              cropWidth={this.state.width}
+              zoom={this.state.zoom}
+              maxZoom={80}
+              minZoom={20}
+              panToMove={true}
+              pinchToZoom={true}
+            />
+            <Text onPress={this.capture()}>Capture()</Text>
+          </View>*/}
         </View>
       </Swiper>
     );
