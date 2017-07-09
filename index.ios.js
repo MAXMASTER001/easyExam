@@ -105,6 +105,29 @@ export default class sorugonder extends Component {
         // const originalImage = require('./camera.png');
         const { ReactNativeImageCropping } = NativeModules;
 
+        /* Available aspect ratios:
+
+      - AspectRatioOriginal
+      - AspectRatioSquare
+      - AspectRatio3x2
+      - AspectRatio5x4
+      - AspectRatio4x3
+      - AspectRatio5x4
+      - AspectRatio7x5
+      - AspectRatio16x9
+*/
+        /*const aspectRatio = ReactNativeImageCropping.original;
+        ReactNativeImageCropping.cropImageWithUrlAndAspect(
+          imageUrl,
+          aspectRatio,
+        ).then(
+          image => {
+            //Image is saved in NSTemporaryDirectory!
+            //image = {uri, width, height}
+          },
+          err => console.log(b),
+        );*/
+
         ReactNativeImageCropping.cropImageWithUrl(response.uri).then(
           image => {
             //Image is saved in NSTemporaryDirectory!
