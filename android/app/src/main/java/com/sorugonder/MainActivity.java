@@ -1,7 +1,6 @@
 package com.sorugonder;
 
 import com.facebook.react.ReactActivity;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
 
 public class MainActivity extends ReactActivity {
 
@@ -13,6 +12,4 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "sorugonder";
     }
-
-   
 }

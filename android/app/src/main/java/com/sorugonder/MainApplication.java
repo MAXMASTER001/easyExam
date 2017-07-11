@@ -3,10 +3,10 @@ package com.sorugonder;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.imagepicker.ImagePickerPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.projectseptember.RNGL.RNGLPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -27,9 +27,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNDeviceInfo(),
             new ImageResizerPackage(),
-            new ImagePickerPackage()
+            new ImagePickerPackage(),
+            new RNDeviceInfo(),
+            new RNGLPackage()
       );
     }
   };
@@ -44,5 +45,4 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
   }
-   
 }
