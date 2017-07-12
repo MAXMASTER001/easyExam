@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 
-import ImagePicker from 'react-native-image-picker';
+//import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 import ImageResizer from 'react-native-image-resizer';
-//import ImagePicker from 'react-native-image-crop-picker';
-//import ImagePicker from 'react-native-customized-image-picker';
-import Card from './src/components/Card';
-import CardSection from './src/components/CardSection';
+
 import Button from './src/components/Button';
 
 import axios from 'axios';
 import DeviceInfo from 'react-native-device-info';
 import Base64 from 'base-64';
 import Swiper from 'react-native-swiper';
-//import EmailPassword from './src/components/EmailPassword';
+
 import ScrollViewExample from './src/components/ScrollView';
 import Soru from './src/soru';
 
@@ -35,21 +33,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const liste = {
-  dersler: [
-    { name: 'Ders seç', id: 0 },
-    { name: 'MATEMATİK', id: 1 },
-    { name: 'GEOMETRİ', id: 2 },
-    { name: 'FİZİK', id: 3 },
-    { name: 'KİMYA', id: 4 },
-    { name: 'BİYOLOJİ', id: 5 },
-    { name: 'DİL VE ANLATIM', id: 6 },
-    { name: 'TARİH', id: 7 },
-    { name: 'COĞRAFYA', id: 8 },
-    { name: 'FELSEFE', id: 9 },
-    { name: 'İNGİLİZCE', id: 10 },
-  ],
-};
+import liste from './src/dersler.json';
 
 export default class sorugonder extends Component {
   constructor() {
@@ -75,11 +59,18 @@ export default class sorugonder extends Component {
     };
   }
 
-  capture() {
-    //console.log(this);
-    this.cropper.crop().then(base64 => console.log(base64));
-  }
   soruSec() {
+    ImagePicker.openPicker({
+      width: 400,
+      height: 300,
+      cropping: true,
+    }).then(image => {
+      this.kucult(image, false);
+      console.log('IMAGE');
+      console.log(image);
+    });
+  }
+  soruSecEX() {
     var options = {
       title: 'Select Avatar',
       customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
