@@ -1,22 +1,4 @@
 import React, { Component } from 'react';
-
-//import ImagePicker from 'react-native-image-picker';
-import ImagePicker from 'react-native-image-crop-picker';
-
-import ImageResizer from 'react-native-image-resizer';
-
-import Card from './src/components/Card';
-import CardSection from './src/components/CardSection';
-import Button from './src/components/Button';
-
-import axios from 'axios';
-import DeviceInfo from 'react-native-device-info';
-import Base64 from 'base-64';
-import Swiper from 'react-native-swiper';
-//import EmailPassword from './src/components/EmailPassword';
-import ScrollViewExample from './src/components/ScrollView';
-import Soru from './src/soru';
-import liste from './src/dersler.json';
 import {
   AppRegistry,
   StyleSheet,
@@ -26,12 +8,27 @@ import {
   Linking,
   ScrollView,
   Picker,
-  ProgressViewIOS,
   TextInput,
   Dimensions,
   TouchableOpacity,
-  Slider,
 } from 'react-native';
+
+import Base64 from 'base-64';
+import Swiper from 'react-native-swiper';
+import axios from 'axios';
+
+import DeviceInfo from 'react-native-device-info';
+
+//import ImagePicker from 'react-native-image-picker';
+
+import ImagePicker from 'react-native-image-crop-picker';
+
+import ImageResizer from 'react-native-image-resizer';
+
+//import EmailPassword from './src/components/EmailPassword';
+import Button from './src/components/Button';
+import Soru from './src/soru';
+import liste from './src/dersler.json';
 
 export default class sorugonder extends Component {
   constructor() {
@@ -56,19 +53,30 @@ export default class sorugonder extends Component {
     };
   }
 
-  soruSec() {
-    ImagePicker.openPicker({
+  soruSec(yontem) {
+    if (yontem==='camera') {
+    ImagePicker.openCamera({
       width: 400,
       height: 300,
       cropping: true,
     }).then(image => {
       console.log(image);
       this.kucult(image, true);
-    });
+    });} else {
+       ImagePicker.openPicker({
+      width: 400,
+      height: 300,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      this.kucult(image, true);
+    })
+      
+    }
   }
 
   soruSecEx() {
-    var options = {
+    const options = {
       title: 'Soru seç',
 
       storageOptions: {
@@ -192,7 +200,7 @@ export default class sorugonder extends Component {
       data.append('sil', false);
 
       // bir defada gönderilecek soruların ait olduğu ders
-      if (this.state.ders != 'ders seç') {
+      if (this.state.ders !== 'ders seç') {
         data.append('ders', this.state.ders);
       } else {
         alert('ders seçimi yapmalısınız');
@@ -339,19 +347,38 @@ export default class sorugonder extends Component {
               //borderWidth: 5,
             }}
           >
-            <TouchableOpacity
-              onPress={() => this.soruSec()}
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 100,
-                height: 100,
-                borderWidth: 3,
-              }}
-            >
-              <Image source={require('./src/images/camera.png')} />
-              {/*<Text style={{ fontSize: 25 }}>Çek</Text>*/}
-            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <TouchableOpacity
+                onPress={() => this.soruSec('camera')}
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 100,
+                  height: 100,
+                  borderWidth: 3,
+                }}
+              >
+                <Image 
+                style={{width:100, resizeMode:'contain'}}
+                source={require('./src/images/camera-icon-21.png')} />
+                {/*<Text style={{ fontSize: 25 }}>Çek</Text>*/}
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.soruSec('gallery')}
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 100,
+                  height: 100,
+                  borderWidth: 3,
+                }}
+              >
+                <Image 
+                style={{width:100, resizeMode:'contain'}}
+                source={require('./src/images/gallery.png')} />
+                {/*<Text style={{ fontSize: 25 }}>Çek</Text>*/}
+              </TouchableOpacity>
+            </View>
 
             {/*<Button onPress={() => this.soruSec()}>
               Sorularını çekmeye başla
@@ -459,8 +486,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   sorular: {
-    width: 110,
-    height: 110,
+    width:100,
+    height:100,
+    resizeMode:'contain',
     margin: 5,
   },
 });
