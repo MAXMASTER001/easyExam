@@ -11,6 +11,7 @@ import {
   TextInput,
   Dimensions,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 
 import Base64 from 'base-64';
@@ -54,24 +55,24 @@ export default class sorugonder extends Component {
   }
 
   soruSec(yontem) {
-    if (yontem==='camera') {
-    ImagePicker.openCamera({
-      width: 400,
-      height: 300,
-      cropping: true,
-    }).then(image => {
-      console.log(image);
-      this.kucult(image, true);
-    });} else {
-       ImagePicker.openPicker({
-      width: 400,
-      height: 300,
-      cropping: true,
-    }).then(image => {
-      console.log(image);
-      this.kucult(image, true);
-    })
-      
+    if (yontem === 'camera') {
+      ImagePicker.openCamera({
+        width: 400,
+        height: 300,
+        cropping: true,
+      }).then(image => {
+        console.log(image);
+        this.kucult(image, true);
+      });
+    } else {
+      ImagePicker.openPicker({
+        width: 400,
+        height: 300,
+        cropping: true,
+      }).then(image => {
+        console.log(image);
+        this.kucult(image, true);
+      });
     }
   }
 
@@ -358,9 +359,10 @@ export default class sorugonder extends Component {
                   borderWidth: 3,
                 }}
               >
-                <Image 
-                style={{width:100, resizeMode:'contain'}}
-                source={require('./src/images/camera-icon-21.png')} />
+                <Image
+                  style={{ width: 100, resizeMode: 'contain' }}
+                  source={require('./src/images/camera-icon-21.png')}
+                />
                 {/*<Text style={{ fontSize: 25 }}>Çek</Text>*/}
               </TouchableOpacity>
               <TouchableOpacity
@@ -373,9 +375,10 @@ export default class sorugonder extends Component {
                   borderWidth: 3,
                 }}
               >
-                <Image 
-                style={{width:100, resizeMode:'contain'}}
-                source={require('./src/images/gallery.png')} />
+                <Image
+                  style={{ width: 100, resizeMode: 'contain' }}
+                  source={require('./src/images/gallery.png')}
+                />
                 {/*<Text style={{ fontSize: 25 }}>Çek</Text>*/}
               </TouchableOpacity>
             </View>
@@ -486,9 +489,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   sorular: {
-    width:100,
-    height:100,
-    resizeMode:'contain',
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
     margin: 5,
   },
 });

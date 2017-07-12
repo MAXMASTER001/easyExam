@@ -1,25 +1,4 @@
 import React, { Component } from 'react';
-
-import ImagePicker from 'react-native-image-picker';
-import ImageResizer from 'react-native-image-resizer';
-//import ImagePicker from 'react-native-image-crop-picker';
-//import ImagePicker from 'react-native-customized-image-picker';
-import Card from './src/components/Card';
-import CardSection from './src/components/CardSection';
-import Button from './src/components/Button';
-
-import axios from 'axios';
-import DeviceInfo from 'react-native-device-info';
-import Base64 from 'base-64';
-import Swiper from 'react-native-swiper';
-//import EmailPassword from './src/components/EmailPassword';
-import ScrollViewExample from './src/components/ScrollView';
-import Soru from './src/soru';
-
-import { NativeModules } from 'react-native';
-
-//import { ImageCrop } from 'react-native-image-cropper';
-
 import {
   AppRegistry,
   StyleSheet,
@@ -29,11 +8,28 @@ import {
   Linking,
   ScrollView,
   Picker,
-  ProgressViewIOS,
   TextInput,
   Dimensions,
   TouchableOpacity,
+  NativeModules,
 } from 'react-native';
+
+import ImagePicker from 'react-native-image-picker';
+import ImageResizer from 'react-native-image-resizer';
+//import ImagePicker from 'react-native-image-crop-picker';
+//import ImagePicker from 'react-native-customized-image-picker';
+
+import axios from 'axios';
+import DeviceInfo from 'react-native-device-info';
+import Base64 from 'base-64';
+import Swiper from 'react-native-swiper';
+import Button from './src/components/Button';
+
+//import EmailPassword from './src/components/EmailPassword';
+
+import Soru from './src/soru';
+
+//import { ImageCrop } from 'react-native-image-cropper';
 
 import liste from './src/dersler.json';
 
@@ -66,7 +62,7 @@ export default class sorugonder extends Component {
     this.cropper.crop().then(base64 => console.log(base64));
   }
   soruSec() {
-    var options = {
+    const options = {
       title: 'Select Avatar',
       customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
       storageOptions: {
