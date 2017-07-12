@@ -35,21 +35,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const liste = {
-  dersler: [
-    { name: 'Ders seç', id: 0 },
-    { name: 'MATEMATİK', id: 1 },
-    { name: 'GEOMETRİ', id: 2 },
-    { name: 'FİZİK', id: 3 },
-    { name: 'KİMYA', id: 4 },
-    { name: 'BİYOLOJİ', id: 5 },
-    { name: 'DİL VE ANLATIM', id: 6 },
-    { name: 'TARİH', id: 7 },
-    { name: 'COĞRAFYA', id: 8 },
-    { name: 'FELSEFE', id: 9 },
-    { name: 'İNGİLİZCE', id: 10 },
-  ],
-};
+import liste from './src/dersler.json';
 
 export default class sorugonder extends Component {
   constructor() {

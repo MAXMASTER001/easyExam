@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import ImagePicker from 'react-native-image-picker';
+//import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
+
 import ImageResizer from 'react-native-image-resizer';
-//import ImagePicker from 'react-native-image-crop-picker';
-//import ImagePicker from 'react-native-customized-image-picker';
+
 import Card from './src/components/Card';
 import CardSection from './src/components/CardSection';
 import Button from './src/components/Button';
@@ -15,9 +16,7 @@ import Swiper from 'react-native-swiper';
 //import EmailPassword from './src/components/EmailPassword';
 import ScrollViewExample from './src/components/ScrollView';
 import Soru from './src/soru';
-
-import { ImageCrop } from 'react-native-image-cropper';
-
+import liste from './src/dersler.json';
 import {
   AppRegistry,
   StyleSheet,
@@ -33,22 +32,6 @@ import {
   TouchableOpacity,
   Slider,
 } from 'react-native';
-
-const liste = {
-  dersler: [
-    { name: 'Ders seç', id: 0 },
-    { name: 'MATEMATİK', id: 1 },
-    { name: 'GEOMETRİ', id: 2 },
-    { name: 'FİZİK', id: 3 },
-    { name: 'KİMYA', id: 4 },
-    { name: 'BİYOLOJİ', id: 5 },
-    { name: 'DİL VE ANLATIM', id: 6 },
-    { name: 'TARİH', id: 7 },
-    { name: 'COĞRAFYA', id: 8 },
-    { name: 'FELSEFE', id: 9 },
-    { name: 'İNGİLİZCE', id: 10 },
-  ],
-};
 
 export default class sorugonder extends Component {
   constructor() {
@@ -74,6 +57,17 @@ export default class sorugonder extends Component {
   }
 
   soruSec() {
+    ImagePicker.openPicker({
+      width: 400,
+      height: 300,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      this.kucult(image, true);
+    });
+  }
+
+  soruSecEx() {
     var options = {
       title: 'Soru seç',
 
@@ -83,10 +77,6 @@ export default class sorugonder extends Component {
       },
     };
 
-    /**
- * The first arg is the options object for customization (it can also be null or omitted for default options),
- * The second arg is the callback which sends object: response (more info below in README)
- */
     ImagePicker.showImagePicker(options, response => {
       console.log('Response = ', response);
 
@@ -97,56 +87,44 @@ export default class sorugonder extends Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        this.setState({ imageToBeCropped: response.uri });
+        // this.setState({ imageToBeCropped: response.uri });
 
         // this.renderImageToBeCropped();
-        // this.kucult(response);
+
+        console.log(response);
+
+        this.kucult(response);
       }
     });
   }
 
-  kucult(response) {
-    ImageResizer.createResizedImage(
-      response.uri,
-      400, //width
-      300, //height
-      'JPEG',
-      80, //quality
-    )
-      .then(resizedImageUri => {
-        // resizeImageUri is the URI of the new image that can now be displayed, uploaded...
-        // console.log('bıdı bıdı');
+  kucult(response, shrink = true) {
+    if (shrink) {
+      ImageResizer.createResizedImage(
+        response.path,
+        400, //width
+        300, //height
+        'JPEG',
+        80, //quality
+      )
+        .then(resizedImageUri => {
+          // resizeImageUri is the URI of the new image that can now be displayed, uploaded...
+          // console.log('bıdı bıdı');
 
-        this.soruEkle(resizedImageUri);
-      })
-      .catch(err => {
-        // Oops, something went wrong. Check that the filename is correct and
-        // inspect err to get more details.
+          this.soruEkle(resizedImageUri);
+        })
+        .catch(err => {
+          // Oops, something went wrong. Check that the filename is correct and
+          // inspect err to get more details.
 
-        console.log('hata oldu' + err);
-      });
+          console.log('hata oldu' + err);
+        });
+    } else {
+      alert('küçültme yapılmadı');
+      this.soruEkle(response.path);
+    }
   }
-  kucultBase64(response) {
-    ImageResizer.createResizedImage(
-      response,
-      400, //width
-      300, //height
-      'JPEG',
-      80, //quality
-    )
-      .then(resizedImageUri => {
-        // resizeImageUri is the URI of the new image that can now be displayed, uploaded...
-        // console.log('bıdı bıdı');
 
-        this.soruEkle(resizedImageUri);
-      })
-      .catch(err => {
-        // Oops, something went wrong. Check that the filename is correct and
-        // inspect err to get more details.
-
-        console.log('hata oldu' + err);
-      });
-  }
   soruEkle(imageUri) {
     const resimler = this.state.photosTaken;
     resimler.push(new Soru(imageUri, 'X'));
@@ -283,78 +261,6 @@ export default class sorugonder extends Component {
       .catch(error => console.log(error));
   }
 
-  capture() {
-    this.refs.cropper.crop().then(res => {
-      /*this.setState({
-        showNew: true,
-        newImage: res,
-      });*/
-      this.setState({ imageToBeCropped: null });
-      console.log(res);
-      this.soruEkle(res);
-
-      // this.kucultBase64(res);
-    });
-  }
-  renderImageToBeCropped() {
-    if (this.state.imageToBeCropped) {
-      return (
-        <ScrollView>
-          <View>
-            <View
-              style={{
-                backgroundColor: 'gray',
-                justifyContent: 'center',
-                alignItems: 'center',
-                margin: 40,
-              }}
-            >
-              <ImageCrop
-                ref={'cropper'}
-                image={this.state.imageToBeCropped}
-                cropHeight={400}
-                cropWidth={300}
-                zoom={this.state.zoom}
-                maxZoom={80}
-                minZoom={20}
-                panToMove={true}
-                pinchToZoom={true}
-              />
-            </View>
-
-            <View style={{ flex: 1, marginTop: 20 }}>
-              <Slider
-                value={this.state.zoom}
-                onValueChange={value => this.setState({ zoom: value })}
-                maximumValue={100}
-                minimumValue={0}
-                step={0.1}
-              />
-              <TouchableOpacity onPress={this.capture.bind(this)}>
-                <View
-                  style={{
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginTop: 20,
-                  }}
-                >
-                  <Text style={{ color: 'grey', padding: 10 }}>CAPTURE</Text>
-                </View>
-              </TouchableOpacity>
-
-              <Image
-                source={{ uri: this.state.newImage }}
-                style={{ height: this.state.height, width: this.state.width }}
-              />
-            </View>
-          </View>
-        </ScrollView>
-      );
-    } else {
-      return null;
-    }
-  }
   renderImages() {
     const resimler = this.state.photosTaken;
     const imgler = [];
@@ -446,10 +352,6 @@ export default class sorugonder extends Component {
               <Image source={require('./src/images/camera.png')} />
               {/*<Text style={{ fontSize: 25 }}>Çek</Text>*/}
             </TouchableOpacity>
-
-            <View>
-              {this.renderImageToBeCropped()}
-            </View>
 
             {/*<Button onPress={() => this.soruSec()}>
               Sorularını çekmeye başla
