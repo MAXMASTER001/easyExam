@@ -12,7 +12,10 @@ import {
   Dimensions,
   TouchableOpacity,
   Platform,
+  NativeModules,
 } from 'react-native';
+
+const { ReactNativeImageCropping } = NativeModules;
 
 import Base64 from 'base-64';
 import Swiper from 'react-native-swiper';
@@ -25,6 +28,7 @@ import ImagePickerIos from 'react-native-image-picker';
 import ImagePickerAndroid from 'react-native-image-crop-picker';
 
 import ImageResizer from 'react-native-image-resizer';
+import GridView from 'react-native-super-grid';
 
 //import EmailPassword from './src/components/EmailPassword';
 import Button from './src/components/Button';
@@ -44,14 +48,20 @@ export default class sorugonder extends Component {
     this.state = {
       width: size.width,
       height: size.height,
-      imageToBeCropped: null,
       photosTaken: [],
       uploadProgress: 0,
       ders: 'ders seç',
       kksAdi: '',
       user_folder: deviceId,
       zoom: 100,
-      ImageCropHeight: 0,
+      okul: {
+        okulAdi: 'Deneme',
+        okulTuru: 'Anadolu Lisesi',
+      },
+      sinav: {
+        donemNo: '1',
+        yaziliNo: '1',
+      },
     };
   }
 
@@ -95,7 +105,7 @@ export default class sorugonder extends Component {
     };
 
     ImagePickerIos.showImagePicker(options, response => {
-      console.log('Response = ', response);
+      // console.log('Response = ', response);
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -104,13 +114,19 @@ export default class sorugonder extends Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        // this.setState({ imageToBeCropped: response.uri });
-
-        // this.renderImageToBeCropped();
-
+        console.log('response');
         console.log(response);
 
-        this.kucult(response);
+        ReactNativeImageCropping.cropImageWithUrl(response.uri).then(
+          image => {
+            console.log('image');
+            console.log(image);
+            //Image is saved in NSTemporaryDirectory!
+            //image = {uri, width, height}
+            this.kucult(image);
+          },
+          err => console.log(b),
+        );
       }
     });
   }
@@ -139,7 +155,12 @@ export default class sorugonder extends Component {
         });
     } else {
       alert('küçültme yapılmadı');
-      this.soruEkle(response.path);
+
+      if (Platform.OS === 'ios') {
+        this.soruEkle(response.uri);
+      } else {
+        this.soruEkle(response.path);
+      }
     }
   }
 
@@ -149,7 +170,6 @@ export default class sorugonder extends Component {
     this.setState({
       photosTaken: resimler,
     });
-    // this.setState({ imageToBeCropped: 0 });
   }
 
   kksOlustur() {
@@ -248,10 +268,7 @@ export default class sorugonder extends Component {
 
     const data = new FormData();
 
-    data.append(
-      'okul_adi',
-      'DENEME\nAnadolu Lisesi\nMATEMATİK\n1. Dönem 1. Yazılı\nSoruları',
-    );
+    data.append('okul_adi', this.state.okul_adi);
     data.append('dizilim', '41,51');
     data.append('tarih_istenen', '20.12.2017');
     console.log('gönderilen ders sirasi ??? ' + this.state.ders);
@@ -281,69 +298,6 @@ export default class sorugonder extends Component {
       .catch(error => console.log(error));
   }
 
-  renderImagesEx() {
-    const resimler = this.state.photosTaken;
-    const imgler = [];
-
-    for (let i = 0, len = resimler.length; i < len; i++) {
-      imgler.push(
-        <View
-          style={{
-            flex: 1,
-            borderWidth: 2,
-            borderColor: 'black',
-            padding: 15,
-            justifyContent: 'center',
-            alignItems: 'center',
-            margin: 3,
-            width: 150,
-            height: 150,
-          }}
-        >
-          <Image
-            source={{ uri: resimler[i].imageUri }}
-            style={styles.sorular}
-          />
-          <View
-            style={{ flexDirection: 'row', width: 60, alignItems: 'center' }}
-          >
-            <Text>Cevap</Text>
-            <TextInput
-              style={{
-                margin: 5,
-                width: 20,
-                textAlign: 'center',
-                height: 20,
-                fontWeight: '500',
-                color: 'white',
-                backgroundColor: 'black',
-                fontSize: 20,
-                borderWidth: 1,
-              }}
-              clearTextOnFocus={true} //sadece iosda çalışır.
-              onChangeText={text => {
-                // alert(text)
-                let cop = this.state.photosTaken.slice(0);
-                cop[i].cevap = text;
-
-                this.setState({ photosTaken: cop });
-                //this.setState({ yeniCevap: text });
-
-                //console.log(this.state.photosTaken[i].cevap);
-                //console.log(cop[i].cevap);
-                //this.forceUpdate()
-                //alert(cop[i].cevap)
-              }}
-              value={this.state.photosTaken[i].cevap}
-            />
-          </View>
-          {/*<Text>{this.state.photosTaken[i].cevap} </Text>*/}
-        </View>,
-      );
-    }
-    return imgler;
-  }
-
   renderImages() {
     const resimler = this.state.photosTaken;
     const imgler = [];
@@ -363,7 +317,6 @@ export default class sorugonder extends Component {
     }
     return imgler;
   }
-
   render() {
     return (
       <Swiper
@@ -409,7 +362,6 @@ export default class sorugonder extends Component {
                   style={{ width: 100, resizeMode: 'contain' }}
                   source={require('./src/images/gallery.png')}
                 />
-                {/*<Text style={{ fontSize: 25 }}>Çek</Text>*/}
               </TouchableOpacity>
             </View>
           </View>
@@ -424,9 +376,14 @@ export default class sorugonder extends Component {
               borderWidth: 2,
             }}
           >
-            <ScrollView horizontal={true}>
-              {this.renderImages()}
-            </ScrollView>
+            <GridView
+              itemWidth={130}
+              items={this.renderImages()}
+              renderItem={item =>
+                <View>
+                  {item}
+                </View>}
+            />
           </View>
         </View>
 
@@ -453,27 +410,61 @@ export default class sorugonder extends Component {
             })}
           </Picker>
         </View>
+
+        <View style={swiperStyles.slide3}>
+          <View style={{ height: 45, width: 300, margin: 10 }}>
+            <TextInput
+              style={styles.cevap}
+              placeholder="Okul adı"
+              onChangeText={text => {
+                const okul = this.state.okul;
+                okul.okul_adi = text;
+                this.setState({ okul });
+              }}
+            />
+          </View>
+          <View style={{ height: 45, width: 300, margin: 10 }}>
+            <Picker
+              style={{ flex: 5, width: 200 }}
+              selectedValue={this.state.okul.okulTuru}
+              onValueChange={(itemValue, itemIndex) => {
+                if (itemValue === 'ders seç') {
+                  alert('Lütfen bir ders seçin');
+                  console.log('itemValue ' + itemValue);
+                  console.log('this.state.ders ' + this.state.ders);
+                } else {
+                  const okul = this.state.okul;
+                  okul.okulTuru = itemValue;
+                  this.setState({ okul });
+                  //this.swiper.scrollBy(1);
+                }
+              }}
+            >
+              <Picker.Item
+                label="Okul türü"
+                value="Okul türü"
+                key="Okul türü"
+              />
+              <Picker.Item
+                label="Anadolu Lisesi"
+                value="Anadolu Lisesi"
+                key="Anadolu Lisesi"
+              />
+              <Picker.Item
+                label="Fen Lisesi"
+                value="Fen Lisesi"
+                key="Fen Lisesi"
+              />
+            </Picker>
+          </View>
+        </View>
         <View style={swiperStyles.slide3}>
           <View style={{ height: 140 }}>
             <Text style={swiperStyles.text}>Sınav adı belirle</Text>
           </View>
           <View style={{ height: 45, width: 300, margin: 10 }}>
             <TextInput
-              style={{
-                margin: 5,
-                textAlign: 'center',
-                //autoCapitalize: 'none',
-                //autoCorrect: false,
-                height: 45,
-                //color: '#fff',
-                fontSize: 30,
-                fontWeight: 'bold',
-                //alignSelf: 'center',
-
-                borderColor: '#007aff',
-                borderWidth: 1,
-                borderRadius: 5,
-              }}
+              style={styles.cevap}
               placeholder="9. Sınıf 1. dönem 1. sınav"
               onChangeText={text => {
                 this.setState({ kksAdi: text });
@@ -486,11 +477,12 @@ export default class sorugonder extends Component {
               onPress={() => {
                 //alert(this.state.kksAdi);
                 this.kksOlustur()
-                 .then(()=>  this.gonderPromise()
-                   .then(() => this.pdfOlustur())
-                 .catch(mesaj => alert(mesaj))
+                  .then(() =>
+                    this.gonderPromise()
+                      .then(() => this.pdfOlustur())
+                      .catch(mesaj => alert(mesaj)),
                   )
-                .catch(mesaj => alert(mesaj));
+                  .catch(mesaj => alert(mesaj));
               }}
             >
               Sınav oluştur
@@ -508,6 +500,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  cevap: {
+    margin: 5,
+    textAlign: 'center',
+    //autoCapitalize: 'none',
+    //autoCorrect: false,
+    height: 45,
+    //color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+    //alignSelf: 'center',
+
+    borderColor: '#007aff',
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 20,
   },
 });
 
@@ -531,6 +542,7 @@ const swiperStyles = StyleSheet.create({
   },
   slide3: {
     flex: 1,
+
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',

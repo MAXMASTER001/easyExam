@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
 const SoruBox = props => {
   return (
     <View style={styles.container}>
-      <Image source={props.imageSource} style={styles.sorular} />
+      <Image source={props.imageSource} style={styles.soruResimleri} />
 
       <View style={{ flexDirection: 'row', width: 60, alignItems: 'center' }}>
         <Text>Cevap</Text>
@@ -36,17 +36,16 @@ const styles = StyleSheet.create({
     width: 20,
     textAlign: 'center',
     height: 20,
-    fontWeight: '500',
+    fontWeight: 'bold',
     color: 'white',
     backgroundColor: 'black',
     fontSize: 20,
-    borderWidth: 1,
   },
-  sorular: {
+  soruResimleri: {
+    flex: 1,
     width: 100,
     height: 100,
-    resizeMode: 'contain',
-    margin: 5,
+    resizeMode: 'cover',
   },
 });
 export default SoruBox;
