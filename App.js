@@ -317,6 +317,67 @@ export default class sorugonder extends Component {
     }
     return imgler;
   }
+  renderIcons() {
+    if (Platform.OS === 'ios') {
+      return (
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <TouchableOpacity
+            onPress={() => this.soruSecIos()}
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 100,
+              height: 100,
+              borderWidth: 3,
+            }}
+          >
+            <Image
+              style={{ width: 100, resizeMode: 'contain' }}
+              source={require('./src/images/camera-icon-21.png')}
+            />
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
+    if (Platform.OS === 'android') {
+      return (
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <TouchableOpacity
+            onPress={() => this.soruSecAndroid('camera')}
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 100,
+              height: 100,
+              borderWidth: 3,
+            }}
+          >
+            <Image
+              style={{ width: 100, resizeMode: 'contain' }}
+              source={require('./src/images/camera-icon-21.png')}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => this.soruSecAndroid('gallery')}
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 100,
+              height: 100,
+              borderWidth: 3,
+            }}
+          >
+            <Image
+              style={{ width: 100, resizeMode: 'contain' }}
+              source={require('./src/images/gallery.png')}
+            />
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  }
   render() {
     return (
       <Swiper
@@ -332,50 +393,12 @@ export default class sorugonder extends Component {
               //borderWidth: 5,
             }}
           >
-            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-              <TouchableOpacity
-                onPress={() => this.soruSec('camera')}
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 100,
-                  height: 100,
-                  borderWidth: 3,
-                }}
-              >
-                <Image
-                  style={{ width: 100, resizeMode: 'contain' }}
-                  source={require('./src/images/camera-icon-21.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.soruSec('gallery')}
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 100,
-                  height: 100,
-                  borderWidth: 3,
-                }}
-              >
-                <Image
-                  style={{ width: 100, resizeMode: 'contain' }}
-                  source={require('./src/images/gallery.png')}
-                />
-              </TouchableOpacity>
+            <View>
+              {this.renderIcons()}
             </View>
           </View>
 
-          <View
-            style={{
-              flex: 7,
-              width: this.state.width - 40,
-
-              margin: 40,
-              borderColor: 'black',
-              borderWidth: 2,
-            }}
-          >
+          <View style={styles.swiperKonteyner}>
             <GridView
               itemWidth={130}
               items={this.renderImages()}
@@ -500,6 +523,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  swiperKonteyner: {
+    flex: 7,
+    width: Dimensions.get('window').width - 40,
+    margin: 40,
+    borderColor: 'black',
+    borderWidth: 2,
   },
   cevap: {
     margin: 5,
