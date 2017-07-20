@@ -54,8 +54,8 @@ export default class sorugonder extends Component {
       user_folder: deviceId,
       zoom: 100,
       okul: {
-        okulAdi: 'Deneme',
-        okulTuru: 'Anadolu Lisesi',
+        ad: 'Deneme',
+        tur: 'Anadolu Lisesi',
       },
       sinav: {
         donemNo: '1',
@@ -257,45 +257,51 @@ export default class sorugonder extends Component {
   }
 
   pdfOlustur() {
-    const config = {
-      onUploadProgress: progressEvent => {
-        const percentCompleted = Math.round(
-          progressEvent.loaded * 100 / progressEvent.total,
-        );
-        this.setState({ uploadProgress: percentCompleted });
-      },
-    };
+    return new Promise((resolve, reject) => {
+      const config = {
+        onUploadProgress: progressEvent => {
+          const percentCompleted = Math.round(
+            progressEvent.loaded * 100 / progressEvent.total,
+          );
+          this.setState({ uploadProgress: percentCompleted });
+        },
+      };
 
-    const data = new FormData();
+      const data = new FormData();
+      const a=this.state.kksAdi;
 
-    data.append('okul_adi', this.state.okul_adi);
-    data.append('dizilim', '41,51');
-    data.append('tarih_istenen', '20.12.2017');
-    console.log('gönderilen ders sirasi ??? ' + this.state.ders);
-    data.append('derssirasi', this.state.ders);
-    data.append('user_folder', this.state.user_folder);
-    data.append('kksAdi', this.state.kksAdi);
-    axios
-      .post(
-        'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_pdfbas.php',
-        data,
-        config,
-      )
-      .then(response => {
-        console.log(response);
+      const inS= a.indexOf(' ', a.length/2)
 
-        //alert(this.state.kksAdi);
-        Linking.openURL(
-          'http://www.ortaksinav.net/hazine00/KKSOGRETMEN/KKS_FOLDER/' +
-            this.state.user_folder +
-            '/' +
-            this.state.kksAdi +
-            '/' +
-            this.state.kksAdi +
-            'A.pdf',
-        );
-      })
-      .catch(error => console.log(error));
+      const b = a.substring(inS);
+      const c = a.replace(b,'');
+      //alert (c);
+      //alert(b);
+      const okul_adi = this.state.okul.ad + '\n' + this.state.okul.tur + '\n' + c + '\n' + b;
+     // data.append('bidi',this.state.kksAdi);
+      data.append('okul_adi', okul_adi);
+      data.append('dizilim', '41,51');
+      data.append('tarih_istenen', '20.12.2017');
+      console.log('gönderilen ders sirasi ??? ' + this.state.ders);
+      data.append('derssirasi', this.state.ders);
+      data.append('user_folder', this.state.user_folder);
+      data.append('kksAdi', this.state.kksAdi);
+      axios
+        .post(
+          'http://ortaksinav.net/hazine00/KKSOGRETMEN/react_pdfbas.php',
+          data,
+          config,
+        )
+        .then(response => {
+          console.log(response);
+
+          //alert(this.state.kksAdi);
+          resolve('pdf created');
+        })
+        .catch(error => {
+          console.log(error);
+          reject('pdf couldnt be created');
+        });
+    });
   }
 
   renderImages() {
@@ -378,23 +384,38 @@ export default class sorugonder extends Component {
       );
     }
   }
-
+  linkPdf() {
+    Linking.openURL(
+      'http://www.ortaksinav.net/hazine00/KKSOGRETMEN/KKS_FOLDER/' +
+        this.state.user_folder +
+        '/' +
+        this.state.kksAdi +
+        '/' +
+        this.state.kksAdi +
+        'A.pdf',
+    );
+  }
   onKksOlustur() {
     this.setState({ sendingQuestions: true });
     this.kksOlustur()
-     .then(() =>
-       this.gonderPromise()
+      .then(() =>
+        this.gonderPromise()
           .then(() => {
-            this.pdfOlustur();
+            this.pdfOlustur()
+              .then(this.linkPdf.bind(this))
+              .catch(mesaj => alert('pdf oluşturulamadı'));
             this.setState({ sendingQuestions: false });
-          }
-        )
+          })
           .catch(mesaj => alert(mesaj)),
       )
       .catch(mesaj => alert(mesaj));
   }
 
   renderKksOlustur() {
+
+    //if (this.state.okul) 
+
+
     if (this.state.sendingQuestions) {
       return <Spinner />;
     } else {
@@ -467,7 +488,7 @@ export default class sorugonder extends Component {
               placeholder="Okul adı"
               onChangeText={text => {
                 const okul = this.state.okul;
-                okul.okul_adi = text;
+                okul.ad = text;
                 this.setState({ okul });
               }}
             />
@@ -475,7 +496,7 @@ export default class sorugonder extends Component {
           <View style={{ height: 45, width: 300, margin: 10 }}>
             <Picker
               style={{ flex: 5, width: 200 }}
-              selectedValue={this.state.okul.okulTuru}
+              selectedValue={this.state.okul.Tur}
               onValueChange={(itemValue, itemIndex) => {
                 if (itemValue === 'ders seç') {
                   alert('Lütfen bir ders seçin');
@@ -483,7 +504,7 @@ export default class sorugonder extends Component {
                   console.log('this.state.ders ' + this.state.ders);
                 } else {
                   const okul = this.state.okul;
-                  okul.okulTuru = itemValue;
+                  okul.Tur = itemValue;
                   this.setState({ okul });
                   //this.swiper.scrollBy(1);
                 }
@@ -569,7 +590,6 @@ const swiperStyles = StyleSheet.create({
   wrapper: {},
   slide1: {
     flex: 1,
-
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
