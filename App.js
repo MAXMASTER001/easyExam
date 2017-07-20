@@ -6,7 +6,6 @@ import {
   View,
   Image,
   Linking,
-  ScrollView,
   Picker,
   TextInput,
   Dimensions,
@@ -29,7 +28,7 @@ import ImagePickerAndroid from 'react-native-image-crop-picker';
 
 import ImageResizer from 'react-native-image-resizer';
 import GridView from 'react-native-super-grid';
-
+import Spinner from './src/components/Spinner';
 //import EmailPassword from './src/components/EmailPassword';
 import Button from './src/components/Button';
 import Soru from './src/soru';
@@ -62,6 +61,7 @@ export default class sorugonder extends Component {
         donemNo: '1',
         yaziliNo: '1',
       },
+      sendingQuestions: false,
     };
   }
 
@@ -378,6 +378,32 @@ export default class sorugonder extends Component {
       );
     }
   }
+
+  onKksOlustur() {
+    this.setState({ sendingQuestions: true });
+    this.kksOlustur()
+     .then(() =>
+       this.gonderPromise()
+          .then(() => {
+            this.pdfOlustur();
+            this.setState({ sendingQuestions: false });
+          }
+        )
+          .catch(mesaj => alert(mesaj)),
+      )
+      .catch(mesaj => alert(mesaj));
+  }
+
+  renderKksOlustur() {
+    if (this.state.sendingQuestions) {
+      return <Spinner />;
+    } else {
+      return (
+        <Button onPress={this.onKksOlustur.bind(this)}>Sınav oluştur</Button>
+      );
+    }
+  }
+
   render() {
     return (
       <Swiper
@@ -496,20 +522,7 @@ export default class sorugonder extends Component {
           </View>
 
           <View style={{ height: 45, width: 300 }}>
-            <Button
-              onPress={() => {
-                //alert(this.state.kksAdi);
-                this.kksOlustur()
-                  .then(() =>
-                    this.gonderPromise()
-                      .then(() => this.pdfOlustur())
-                      .catch(mesaj => alert(mesaj)),
-                  )
-                  .catch(mesaj => alert(mesaj));
-              }}
-            >
-              Sınav oluştur
-            </Button>
+            {this.renderKksOlustur()}
           </View>
         </View>
       </Swiper>
