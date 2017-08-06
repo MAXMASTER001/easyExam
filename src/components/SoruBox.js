@@ -1,51 +1,77 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  Dimensions,
+} from 'react-native';
 
-const SoruBox = props => {
-  return (
+const width = Dimensions.get('window').width;
+class SoruBox extends Component {
+  constructor() {
+    super();
+    this.state = { cevapText: 'X' };
+  }
+ render () {
+   return (
     <View style={styles.container}>
-      <Image source={props.imageSource} style={styles.soruResimleri} />
+      <Image source={this.props.imageSource} style={styles.soruResimleri} />
 
-      <View style={{ flexDirection: 'row', width: 60, alignItems: 'center' }}>
-        <Text>Cevap</Text>
+      <View
+        style={{
+          backgroundColor: '#e74c3c',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text style={{color:'white',fontWeight:'bold'}}>Cevap</Text>
         <TextInput
+          //underlineColorAndroid="transparent" //sadece android
+          maxLength={1}
           style={styles.cevap}
-          clearTextOnFocus={true} //sadece iosda çalışır.
-          onChangeText={props.onChangeText}
-          value={props.cevap}
+          //clearTextOnFocus={true} //sadece iosda çalışır.
+          onChangeText={text => {
+            this.setState({ cevapText: text });
+            this.props.onChangeText(text);
+          }}
+          value={this.state.cevapText}
+          onFocus={() => {
+           
+            this.setState({ cevapText: '' });
+          }}
+          
         />
       </View>
     </View>
   );
-};
+ } 
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: '#e74c3c',
     padding: 15,
     justifyContent: 'center',
-    alignItems: 'center',
     margin: 3,
-    width: 150,
-    height: 150,
+    width: (width - 26) / 2,
+    aspectRatio: 1,
   },
   cevap: {
-    margin: 5,
     width: 20,
+    height: 33,
     textAlign: 'center',
-    height: 20,
+    fontSize: 12,
     fontWeight: 'bold',
     color: 'white',
-    backgroundColor: 'black',
-    fontSize: 20,
   },
   soruResimleri: {
     flex: 1,
-    width: 100,
-    height: 100,
-    resizeMode: 'cover',
+
+    resizeMode: 'contain',
   },
 });
 export default SoruBox;
