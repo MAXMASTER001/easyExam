@@ -45,7 +45,7 @@ const borderColor = '#e74c3c';
 
 const { ReactNativeImageCropping } = NativeModules;
 
-export default class sorugonder extends Component {
+export default class EasyExam extends Component {
   constructor() {
     super();
     const deviceId = DeviceInfo.getUniqueID();
@@ -648,4 +648,4 @@ const swiperStyles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('sorugonder', () => sorugonder);
+AppRegistry.registerComponent('EasyExam', () => EasyExam);
